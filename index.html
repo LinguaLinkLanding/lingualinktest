@@ -402,7 +402,16 @@
             <p>We're launching soon, and early sign-ups will get priority access to job opportunities.</p>
             
             <div class="waitlist-form">
-                <form id="contact-form" action="https://formsubmit.co/solovyeva.consult@gmail.com" method="POST">
+                <!-- Updated to use Netlify Forms -->
+                <form id="contact-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success">
+                    <!-- Netlify honeypot field -->
+                    <p class="hidden" style="display:none">
+                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
+                    
+                    <!-- Hidden field that tells Netlify this is a form -->
+                    <input type="hidden" name="form-name" value="waitlist">
+                    
                     <div class="form-group">
                         <label for="name">Name <span class="optional">(optional)</span></label>
                         <input type="text" id="name" name="name">
@@ -416,14 +425,10 @@
                         <input type="email" id="email" name="email">
                     </div>
                     
-                    <!-- Anti-spam honeypot field -->
-                    <input type="text" name="_honey" style="display:none">
-                    
-                    <!-- Disable captcha -->
-                    <input type="hidden" name="_captcha" value="false">
-                    
-                    <!-- Success page (can be changed to redirect back to the same page) -->
-                    <input type="hidden" name="_next" value="https://yourdomain.com/success.html">
+                    <div class="form-group">
+                        <label for="languages">Languages You Interpret <span class="optional">(optional)</span></label>
+                        <input type="text" id="languages" name="languages">
+                    </div>
                     
                     <div class="form-submit">
                         <button type="submit" class="btn btn-large">Join the Waitlist</button>
@@ -474,20 +479,8 @@
     </footer>
 
     <script>
-        // Show success message on form submission
+        // Show success message on form submission - client-side validation
         document.getElementById('contact-form').addEventListener('submit', function(e) {
-            // If you want to show a success message without leaving the page, 
-            // you can uncomment the lines below and handle submission with AJAX instead
-            
-            /*
-            e.preventDefault();
-            const form = e.target;
-            // Here you would add AJAX code to submit the form
-            // After successful submission:
-            document.getElementById('success-message').style.display = 'block';
-            form.reset();
-            */
-            
             // Check if at least one field has been filled
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
@@ -498,6 +491,22 @@
                 alert('Please fill in at least one contact method (name, phone, or email).');
             }
         });
+        
+        // Check for success parameter in URL (for when returning from form submission)
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('success')) {
+                document.getElementById('success-message').style.display = 'block';
+                
+                // Scroll to the success message
+                document.getElementById('waitlist').scrollIntoView();
+                
+                // Hide success message after 5 seconds
+                setTimeout(function() {
+                    document.getElementById('success-message').style.display = 'none';
+                }, 5000);
+            }
+        };
     </script>
 </body>
 </html>
