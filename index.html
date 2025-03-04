@@ -1,512 +1,493 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinguaLink – Work as an Interpreter on Your Terms</title>
-    <style>
-        :root {
-            --primary: #3A5FCC;         /* Darker blue for more boldness */
-            --secondary: #1E2A78;
-            --accent: #50DADD;          /* Brighter teal accent */
-            --light: #F5F7FF;
-            --dark: #141428;            /* Darker text color */
-            --success: #38A03C;         /* Darker success color */
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            color: var(--dark);
-            line-height: 1.6;
-            background-color: var(--light);
-            font-weight: 400;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 25px 0;             /* Increased padding */
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Added shadow for boldness */
-        }
-        
-        .logo {
-            font-size: 2.8rem;           /* Larger logo */
-            font-weight: 800;            /* Bolder font weight */
-            letter-spacing: -1px;        /* Tighter letter spacing */
-        }
-        
-        .logo span {
-            color: var(--accent);
-        }
-        
-        .hero {
-            padding: 80px 0;             /* More padding */
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1); /* Inner shadow */
-        }
-        
-        .hero h1 {
-            font-size: 3rem;             /* Larger heading */
-            margin-bottom: 20px;
-            font-weight: 800;            /* Bolder font weight */
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Text shadow */
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 40px;         /* More bottom margin */
-            font-weight: 500;            /* Medium weight for subtitles */
-        }
-        
-        .problem {
-            padding: 60px 0;
-            background-color: white;
-        }
-        
-        .problem h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--secondary);
-            font-size: 2.2rem;           /* Larger heading */
-            font-weight: 700;            /* Bolder heading */
-        }
-        
-        .problem-list {
-            max-width: 800px;
-            margin: 0 auto;
-            padding-left: 20px;
-        }
-        
-        .problem-list li {
-            margin-bottom: 20px;         /* More spacing between items */
-            font-size: 1.2rem;           /* Larger list text */
-            font-weight: 500;            /* Medium weight for more boldness */
-        }
-        
-        .solution {
-            padding: 70px 0;
-            background-color: var(--light);
-        }
-        
-        .solution h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--secondary);
-            font-size: 2.2rem;
-            font-weight: 700;
-        }
-        
-        .benefits {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .benefit-card {
-            background-color: white;
-            border-radius: 10px;         /* Slightly rounder corners */
-            padding: 30px;               /* More padding */
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Stronger shadow */
-            flex: 1 1 300px;
-            max-width: 350px;
-            transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
-        }
-        
-        .benefit-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.2); /* Enhanced shadow on hover */
-        }
-        
-        .benefit-card h3 {
-            display: flex;
-            align-items: center;
-            color: var(--secondary);
-            margin-bottom: 15px;
-            font-size: 1.4rem;           /* Larger heading */
-            font-weight: 700;            /* Bolder heading */
-        }
-        
-        .benefit-card h3::before {
-            content: "✅";
-            margin-right: 10px;
-            font-size: 1.4rem;           /* Larger checkmark */
-        }
-        
-        .how-it-works {
-            padding: 70px 0;
-            background-color: white;
-        }
-        
-        .how-it-works h2 {
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--secondary);
-            font-size: 2.2rem;
-            font-weight: 700;
-        }
-        
-        .steps {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 40px;                   /* More gap between steps */
-        }
-        
-        .step {
-            flex: 1 1 240px;
-            text-align: center;
-            padding: 30px;               /* More padding */
-            background-color: var(--light);
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Stronger shadow */
-            transition: transform 0.3s;  /* Smooth transition for hover */
-        }
-        
-        .step:hover {
-            transform: translateY(-5px); /* Lift on hover */
-        }
-        
-        .step-number {
-            display: inline-block;
-            width: 60px;                 /* Larger circle */
-            height: 60px;                /* Larger circle */
-            line-height: 60px;           /* Center vertically */
-            text-align: center;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
-            font-weight: bold;
-            margin-bottom: 20px;
-            font-size: 1.4rem;           /* Larger number */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Shadow for depth */
-        }
-        
-        .step h3 {
-            font-size: 1.4rem;           /* Larger heading */
-            font-weight: 700;            /* Bolder heading */
-            margin-bottom: 10px;
-        }
-        
-        .cta {
-            text-align: center;
-            padding: 60px 0;
-            background-color: var(--light);
-        }
-        
-        .cta h2 {
-            color: var(--secondary);
-            margin-bottom: 25px;
-            font-size: 2.2rem;
-            font-weight: 700;
-        }
-        
-        .cta p {
-            max-width: 700px;
-            margin: 0 auto 40px;
-            font-size: 1.2rem;
-            font-weight: 500;           /* Medium weight for emphasis */
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            text-decoration: none;
-            padding: 16px 34px;          /* Larger padding */
-            border-radius: 30px;
-            font-weight: 700;            /* Bolder text */
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 6px 15px rgba(58, 95, 204, 0.4); /* Enhanced shadow */
-            letter-spacing: 0.5px;       /* Slight letter spacing */
-        }
-        
-        .btn:hover {
-            background-color: var(--secondary);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(58, 95, 204, 0.5);
-        }
-        
-        .btn-large {
-            padding: 20px 38px;
-            font-size: 1.3rem;
-        }
-        
-        footer {
-            background-color: var(--secondary);
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-            font-weight: 500;
-        }
-        
-        /* Form styles - Enhanced */
-        .waitlist-form {
-            max-width: 550px;            /* Slightly wider form */
-            margin: 0 auto;
-            background-color: white;
-            padding: 40px;               /* More padding */
-            border-radius: 12px;         /* Rounder corners */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Stronger shadow */
-            text-align: left;
-        }
-        
-        .form-group {
-            margin-bottom: 25px;         /* More spacing between fields */
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;            /* Bolder labels */
-            color: var(--secondary);
-            font-size: 1.1rem;           /* Larger labels */
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 15px 18px;          /* Larger input fields */
-            border: 2px solid #ddd;      /* Thicker border */
-            border-radius: 8px;          /* Rounder corners */
-            font-size: 1.1rem;
-            transition: all 0.3s;
-        }
-        
-        .form-group input:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(58, 95, 204, 0.2); /* Focus ring */
-        }
-        
-        .form-group .optional {
-            color: #666;
-            font-size: 0.9rem;
-            font-weight: normal;
-            margin-left: 8px;
-        }
-        
-        .form-submit {
-            text-align: center;
-            margin-top: 35px;
-        }
-        
-        .success-message {
-            background-color: var(--success);
-            color: white;
-            padding: 18px;
-            border-radius: 8px;
-            margin-top: 25px;
-            display: none;
-            font-weight: 600;
-            box-shadow: 0 4px 12px rgba(56, 160, 60, 0.3);
-        }
-        
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.4rem;
-            }
-            
-            .benefit-card {
-                flex: 1 1 100%;
-            }
-            
-            .steps {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .step {
-                max-width: 100%;
-            }
-            
-            .waitlist-form {
-                padding: 25px;
-            }
-        }
-    </style>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>LinguaLink – Work as an Interpreter on Your Terms</title>
+   <style>
+       :root {
+           --primary: #3A5FCC;         /* Darker blue for more boldness */
+           --secondary: #1E2A78;
+           --accent: #50DADD;          /* Brighter teal accent */
+           --light: #F5F7FF;
+           --dark: #141428;            /* Darker text color */
+           --success: #38A03C;         /* Darker success color */
+       }
+       
+       * {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+       }
+       
+       body {
+           color: var(--dark);
+           line-height: 1.6;
+           background-color: var(--light);
+           font-weight: 400;
+       }
+       
+       .container {
+           max-width: 1200px;
+           margin: 0 auto;
+           padding: 0 20px;
+       }
+       
+       header {
+           background-color: var(--primary);
+           color: white;
+           padding: 25px 0;             /* Increased padding */
+           box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Added shadow for boldness */
+       }
+       
+       .logo {
+           font-size: 2.8rem;           /* Larger logo */
+           font-weight: 800;            /* Bolder font weight */
+           letter-spacing: -1px;        /* Tighter letter spacing */
+       }
+       
+       .logo span {
+           color: var(--accent);
+       }
+       
+       .hero {
+           padding: 80px 0;             /* More padding */
+           text-align: center;
+           background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+           color: white;
+           box-shadow: inset 0 -5px 10px rgba(0,0,0,0.1); /* Inner shadow */
+       }
+       
+       .hero h1 {
+           font-size: 3rem;             /* Larger heading */
+           margin-bottom: 20px;
+           font-weight: 800;            /* Bolder font weight */
+           text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Text shadow */
+       }
+       
+       .hero p {
+           font-size: 1.3rem;
+           max-width: 800px;
+           margin: 0 auto 40px;         /* More bottom margin */
+           font-weight: 500;            /* Medium weight for subtitles */
+       }
+       
+       .problem {
+           padding: 60px 0;
+           background-color: white;
+       }
+       
+       .problem h2 {
+           text-align: center;
+           margin-bottom: 30px;
+           color: var(--secondary);
+           font-size: 2.2rem;           /* Larger heading */
+           font-weight: 700;            /* Bolder heading */
+       }
+       
+       .problem-list {
+           max-width: 800px;
+           margin: 0 auto;
+           padding-left: 20px;
+       }
+       
+       .problem-list li {
+           margin-bottom: 20px;         /* More spacing between items */
+           font-size: 1.2rem;           /* Larger list text */
+           font-weight: 500;            /* Medium weight for more boldness */
+       }
+       
+       .solution {
+           padding: 70px 0;
+           background-color: var(--light);
+       }
+       
+       .solution h2 {
+           text-align: center;
+           margin-bottom: 40px;
+           color: var(--secondary);
+           font-size: 2.2rem;
+           font-weight: 700;
+       }
+       
+       .benefits {
+           display: flex;
+           flex-wrap: wrap;
+           justify-content: center;
+           gap: 30px;
+           margin-bottom: 50px;
+       }
+       
+       .benefit-card {
+           background-color: white;
+           border-radius: 10px;         /* Slightly rounder corners */
+           padding: 30px;               /* More padding */
+           box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Stronger shadow */
+           flex: 1 1 300px;
+           max-width: 350px;
+           transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effect */
+       }
+       
+       .benefit-card:hover {
+           transform: translateY(-5px);
+           box-shadow: 0 12px 30px rgba(0,0,0,0.2); /* Enhanced shadow on hover */
+       }
+       
+       .benefit-card h3 {
+           display: flex;
+           align-items: center;
+           color: var(--secondary);
+           margin-bottom: 15px;
+           font-size: 1.4rem;           /* Larger heading */
+           font-weight: 700;            /* Bolder heading */
+       }
+       
+       .benefit-card h3::before {
+           content: "✅";
+           margin-right: 10px;
+           font-size: 1.4rem;           /* Larger checkmark */
+       }
+       
+       .how-it-works {
+           padding: 70px 0;
+           background-color: white;
+       }
+       
+       .how-it-works h2 {
+           text-align: center;
+           margin-bottom: 50px;
+           color: var(--secondary);
+           font-size: 2.2rem;
+           font-weight: 700;
+       }
+       
+       .steps {
+           max-width: 800px;
+           margin: 0 auto;
+           display: flex;
+           flex-wrap: wrap;
+           justify-content: space-around;
+           gap: 40px;                   /* More gap between steps */
+       }
+       
+       .step {
+           flex: 1 1 240px;
+           text-align: center;
+           padding: 30px;               /* More padding */
+           background-color: var(--light);
+           border-radius: 10px;
+           box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Stronger shadow */
+           transition: transform 0.3s;  /* Smooth transition for hover */
+       }
+       
+       .step:hover {
+           transform: translateY(-5px); /* Lift on hover */
+       }
+       
+       .step-number {
+           display: inline-block;
+           width: 60px;                 /* Larger circle */
+           height: 60px;                /* Larger circle */
+           line-height: 60px;           /* Center vertically */
+           text-align: center;
+           background-color: var(--primary);
+           color: white;
+           border-radius: 50%;
+           font-weight: bold;
+           margin-bottom: 20px;
+           font-size: 1.4rem;           /* Larger number */
+           box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Shadow for depth */
+       }
+       
+       .step h3 {
+           font-size: 1.4rem;           /* Larger heading */
+           font-weight: 700;            /* Bolder heading */
+           margin-bottom: 10px;
+       }
+       
+       .cta {
+           text-align: center;
+           padding: 60px 0;
+           background-color: var(--light);
+       }
+       
+       .cta h2 {
+           color: var(--secondary);
+           margin-bottom: 25px;
+           font-size: 2.2rem;
+           font-weight: 700;
+       }
+       
+       .cta p {
+           max-width: 700px;
+           margin: 0 auto 40px;
+           font-size: 1.2rem;
+           font-weight: 500;           /* Medium weight for emphasis */
+       }
+       
+       .btn {
+           display: inline-block;
+           background-color: var(--primary);
+           color: white;
+           text-decoration: none;
+           padding: 16px 34px;          /* Larger padding */
+           border-radius: 30px;
+           font-weight: 700;            /* Bolder text */
+           font-size: 1.2rem;
+           transition: all 0.3s ease;
+           border: none;
+           cursor: pointer;
+           box-shadow: 0 6px 15px rgba(58, 95, 204, 0.4); /* Enhanced shadow */
+           letter-spacing: 0.5px;       /* Slight letter spacing */
+       }
+       
+       .btn:hover {
+           background-color: var(--secondary);
+           transform: translateY(-5px);
+           box-shadow: 0 8px 20px rgba(58, 95, 204, 0.5);
+       }
+       
+       .btn-large {
+           padding: 20px 38px;
+           font-size: 1.3rem;
+       }
+       
+       footer {
+           background-color: var(--secondary);
+           color: white;
+           padding: 40px 0;
+           text-align: center;
+           font-weight: 500;
+       }
+       
+       /* Form styles - Enhanced */
+       .waitlist-form {
+           max-width: 550px;            /* Slightly wider form */
+           margin: 0 auto;
+           background-color: white;
+           padding: 40px;               /* More padding */
+           border-radius: 12px;         /* Rounder corners */
+           box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Stronger shadow */
+           text-align: left;
+       }
+       
+       .form-group {
+           margin-bottom: 25px;         /* More spacing between fields */
+       }
+       
+       .form-group label {
+           display: block;
+           margin-bottom: 10px;
+           font-weight: 600;            /* Bolder labels */
+           color: var(--secondary);
+           font-size: 1.1rem;           /* Larger labels */
+       }
+       
+       .form-group input {
+           width: 100%;
+           padding: 15px 18px;          /* Larger input fields */
+           border: 2px solid #ddd;      /* Thicker border */
+           border-radius: 8px;          /* Rounder corners */
+           font-size: 1.1rem;
+           transition: all 0.3s;
+       }
+       
+       .form-group input:focus {
+           border-color: var(--primary);
+           outline: none;
+           box-shadow: 0 0 0 3px rgba(58, 95, 204, 0.2); /* Focus ring */
+       }
+       
+       .form-group .optional {
+           color: #666;
+           font-size: 0.9rem;
+           font-weight: normal;
+           margin-left: 8px;
+       }
+       
+       .form-submit {
+           text-align: center;
+           margin-top: 35px;
+       }
+       
+       .success-message {
+           background-color: var(--success);
+           color: white;
+           padding: 18px;
+           border-radius: 8px;
+           margin-top: 25px;
+           display: none;
+           font-weight: 600;
+           box-shadow: 0 4px 12px rgba(56, 160, 60, 0.3);
+       }
+       
+       @media (max-width: 768px) {
+           .hero h1 {
+               font-size: 2.4rem;
+           }
+           
+           .benefit-card {
+               flex: 1 1 100%;
+           }
+           
+           .steps {
+               flex-direction: column;
+               align-items: center;
+           }
+           
+           .step {
+               max-width: 100%;
+           }
+           
+           .waitlist-form {
+               padding: 25px;
+           }
+       }
+   </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">Lingua<span>Link</span></div>
-        </div>
-    </header>
-    
-    <section class="hero">
-        <div class="container">
-            <h1>Work as an Interpreter on Your Terms</h1>
-            <p>Connect directly with clients, set your own rates, and take control of your career.</p>
-            <a href="#waitlist" class="btn btn-large">Join the Waitlist</a>
-        </div>
-    </section>
-    
-    <section class="problem">
-        <div class="container">
-            <h2>Tired of Low Pay, Unreliable Jobs, and Middlemen Taking a Cut?</h2>
-            <p style="text-align: center; margin-bottom: 30px; font-size: 1.2rem; font-weight: 500;">Interpreting should be <strong>fair, flexible, and rewarding</strong>—but right now, it's not.</p>
-            <ul class="problem-list">
-                <li><strong>Agencies take huge commissions, leaving you with less.</strong></li>
-                <li><strong>Unclear job conditions and last-minute cancellations waste your time.</strong></li>
-                <li><strong>Finding consistent, well-paid work is a struggle.</strong></li>
-            </ul>
-            <p style="text-align: center; margin-top: 40px; font-weight: bold; font-size: 1.3rem; color: var(--primary);">We're changing that.</p>
-        </div>
-    </section>
-    
-    <section class="solution">
-        <div class="container">
-            <h2>Introducing LinguaLink – A Smarter Way to Work as an Interpreter</h2>
-            <p style="text-align: center; margin-bottom: 50px; font-size: 1.2rem; font-weight: 500;">LinguaLink is a <strong>new marketplace</strong> that connects interpreters directly with businesses and organizations that need their skills—<strong>without unfair commissions or delays</strong>.</p>
-            
-            <div class="benefits">
-                <div class="benefit-card">
-                    <h3>Keep More of What You Earn</h3>
-                    <p>No middlemen taking excessive cuts. Set your rates and receive the compensation you deserve.</p>
-                </div>
-                <div class="benefit-card">
-                    <h3>Clear, Reliable Job Offers</h3>
-                    <p>Know your rate, job details, and client in advance. No more surprises or last-minute cancellations.</p>
-                </div>
-                <div class="benefit-card">
-                    <h3>Work When & Where You Want</h3>
-                    <p>Choose your jobs and stay in control of your schedule. Remote or in-person - it's your decision.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="cta" id="waitlist">
-        <div class="container">
-            <h2>Join the First Wave of Interpreters on LinguaLink</h2>
-            <p>We're launching soon, and early sign-ups will get priority access to job opportunities.</p>
-            
-            <div class="waitlist-form">
-                <!-- Updated to use Netlify Forms -->
-                <form id="contact-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success">
-                    <!-- Netlify honeypot field -->
-                    <p class="hidden" style="display:none">
-                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-                    </p>
-                    
-                    <!-- Hidden field that tells Netlify this is a form -->
-                    <input type="hidden" name="form-name" value="waitlist">
-                    
-                    <div class="form-group">
-                        <label for="name">Name <span class="optional">(optional)</span></label>
-                        <input type="text" id="name" name="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number <span class="optional">(optional)</span></label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email <span class="optional">(optional)</span></label>
-                        <input type="email" id="email" name="email">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="languages">Languages You Interpret <span class="optional">(optional)</span></label>
-                        <input type="text" id="languages" name="languages">
-                    </div>
-                    
-                    <div class="form-submit">
-                        <button type="submit" class="btn btn-large">Join the Waitlist</button>
-                    </div>
-                </form>
-                <div id="success-message" class="success-message">
-                    Thank you for joining our waitlist! We'll contact you when we launch.
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="how-it-works">
-        <div class="container">
-            <h2>How It Works</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Sign Up</h3>
-                    <p>Join the waitlist now to secure your spot when we launch.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Skill Verification</h3>
-                    <p>Take a short test when we launch to qualify for jobs.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Start Earning</h3>
-                    <p>Get matched with clients who need your expertise.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="cta">
-        <div class="container">
-            <h2>Be Part of the Change</h2>
-            <p>LinguaLink is built for interpreters, by people who understand the industry's challenges. <strong>Join now and help shape the future of fair, flexible interpretation work.</strong></p>
-            <a href="#waitlist" class="btn btn-large">Join the Waitlist</a>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 LinguaLink. All rights reserved.</p>
-        </div>
-    </footer>
+   <header>
+       <div class="container">
+           <div class="logo">Lingua<span>Link</span></div>
+       </div>
+   </header>
+   
+   <section class="hero">
+       <div class="container">
+           <h1>Work as an Interpreter on Your Terms</h1>
+           <p>Connect directly with clients, set your own rates, and take control of your career.</p>
+           <a href="#waitlist" class="btn btn-large">Join the Waitlist</a>
+       </div>
+   </section>
+   
+   <section class="problem">
+       <div class="container">
+           <h2>Tired of Low Pay, Unreliable Jobs, and Middlemen Taking a Cut?</h2>
+           <p style="text-align: center; margin-bottom: 30px; font-size: 1.2rem; font-weight: 500;">Interpreting should be <strong>fair, flexible, and rewarding</strong>—but right now, it's not.</p>
+           <ul class="problem-list">
+               <li><strong>Agencies take huge commissions, leaving you with less.</strong></li>
+               <li><strong>Unclear job conditions and last-minute cancellations waste your time.</strong></li>
+               <li><strong>Finding consistent, well-paid work is a struggle.</strong></li>
+           </ul>
+           <p style="text-align: center; margin-top: 40px; font-weight: bold; font-size: 1.3rem; color: var(--primary);">We're changing that.</p>
+       </div>
+   </section>
+   
+   <section class="solution">
+       <div class="container">
+           <h2>Introducing LinguaLink – A Smarter Way to Work as an Interpreter</h2>
+           <p style="text-align: center; margin-bottom: 50px; font-size: 1.2rem; font-weight: 500;">LinguaLink is a <strong>new marketplace</strong> that connects interpreters directly with businesses and organizations that need their skills—<strong>without unfair commissions or delays</strong>.</p>
+           
+           <div class="benefits">
+               <div class="benefit-card">
+                   <h3>Keep More of What You Earn</h3>
+                   <p>No middlemen taking excessive cuts. Set your rates and receive the compensation you deserve.</p>
+               </div>
+               <div class="benefit-card">
+                   <h3>Clear, Reliable Job Offers</h3>
+                   <p>Know your rate, job details, and client in advance. No more surprises or last-minute cancellations.</p>
+               </div>
+               <div class="benefit-card">
+                   <h3>Work When & Where You Want</h3>
+                   <p>Choose your jobs and stay in control of your schedule. Remote or in-person - it's your decision.</p>
+               </div>
+           </div>
+       </div>
+   </section>
+   
+   <section class="cta" id="waitlist">
+       <div class="container">
+           <h2>Join the First Wave of Interpreters on LinguaLink</h2>
+           <p>We're launching soon, and early sign-ups will get priority access to job opportunities.</p>
+       
 
-    <script>
-        // Show success message on form submission - client-side validation
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            // Check if at least one field has been filled
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            
-            if (!name && !phone && !email) {
-                e.preventDefault();
-                alert('Please fill in at least one contact method (name, phone, or email).');
-            }
-        });
-        
-        // Check for success parameter in URL (for when returning from form submission)
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('success')) {
-                document.getElementById('success-message').style.display = 'block';
-                
-                // Scroll to the success message
-                document.getElementById('waitlist').scrollIntoView();
-                
-                // Hide success message after 5 seconds
-                setTimeout(function() {
-                    document.getElementById('success-message').style.display = 'none';
-                }, 5000);
-            }
-        };
-    </script>
+   <section class="cta">
+       <div class="container">
+           <h2>Be Part of the Change</h2>
+           <p>LinguaLink is built for interpreters, by people who understand the industry's challenges. <strong>Join now and help shape the future of fair, flexible interpretation work.</strong></p>
+           <a href="#waitlist" class="btn btn-large">Join the Waitlist</a>
+           
+           <div class="waitlist-form" style="margin-top: 40px;">
+               <form id="contact-form-2" action="https://formspree.io/f/xldgqvlq" method="POST">
+                   <div class="form-group">
+                       <label for="name-2">Name <span class="optional">(optional)</span></label>
+                       <input type="text" id="name-2" name="name">
+                   </div>
+                   <div class="form-group">
+                       <label for="phone-2">Phone Number <span class="optional">(optional)</span></label>
+                       <input type="tel" id="phone-2" name="phone">
+                   </div>
+                   <div class="form-group">
+                       <label for="email-2">Email <span class="optional">(optional)</span></label>
+                       <input type="email" id="email-2" name="email">
+                   </div>
+                   
+                   <div class="form-group">
+                       <label for="languages-2">Languages You Interpret <span class="optional">(optional)</span></label>
+                       <input type="text" id="languages-2" name="languages">
+                   </div>
+                   
+                   <div class="form-submit">
+                       <button type="submit" class="btn btn-large">Join the Waitlist</button>
+                   </div>
+               </form>
+               <div id="success-message-2" class="success-message">
+                   Thank you for joining our waitlist! We'll contact you when we launch.
+               </div>
+           </div>
+       </div>
+   </section>
+
+   <footer>
+       <div class="container">
+           <p>&copy; 2025 LinguaLink. All rights reserved.</p>
+       </div>
+   </footer>
+
+   <script>
+       // Update the script to handle both forms
+       document.querySelectorAll('form[id^="contact-form"]').forEach(form => {
+           form.addEventListener('submit', function(e) {
+               const name = this.querySelector('[name="name"]').value;
+               const phone = this.querySelector('[name="phone"]').value;
+               const email = this.querySelector('[name="email"]').value;
+               const successMessageId = this.id === 'contact-form' ? 'success-message' : 'success-message-2';
+               
+               if (!name && !phone && !email) {
+                   e.preventDefault();
+                   alert('Please fill in at least one contact method (name, phone, or email).');
+                   return;
+               }
+
+               // Formspree handling
+               fetch(this.action, {
+                   method: 'POST',
+                   body: new FormData(this),
+                   headers: {
+                       'Accept': 'application/json'
+                   }
+               }).then(response => {
+                   if (response.ok) {
+                       // Show success message
+                       document.getElementById(successMessageId).style.display = 'block';
+                       this.reset(); // Clear form
+                       
+                       // Hide success message after 5 seconds
+                       setTimeout(() => {
+                           document.getElementById(successMessageId).style.display = 'none';
+                       }, 5000);
+                   } else {
+                       // Handle errors
+                       alert('There was a problem submitting your form');
+                   }
+               }).catch(error => {
+                   alert('There was a problem submitting your form');
+               });
+
+               e.preventDefault(); // Prevent default form submission
+           });
+       });
+   </script>
 </body>
 </html>
